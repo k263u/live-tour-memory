@@ -165,6 +165,9 @@ URL：https://apps.apple.com/jp/app/livemo-%E3%83%A9%E3%82%A4%E3%83%96-%E9%81%A0
 ・行った会場一覧
 ・公開・非公開設定
 
+### 画面遷移図
+Figma：https://www.figma.com/design/VAtPm0NFM185reXGYzfqeC/%E7%84%A1%E9%A1%8C?node-id=0-1&t=5wrwQzJ8uY8C5bVX-1
+
 ## 8. このアプリの懸念点とその対策
 
 懸念点①
