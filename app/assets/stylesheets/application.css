@@ -1,15 +1,237 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
- * vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
- *= require_tree .
- *= require_self
- */
+body {
+  margin: 0;
+  background-color: #fffaf8;
+  color: #4b4548;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 8%;
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+header nav {
+  display: flex;
+  gap: 24px;
+}
+
+header nav a {
+  color: #665d61;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.header-logo {
+  width: 450px;
+  max-width: 100%;
+  height: auto;
+}
+
+.hero {
+  min-height: 70vh;
+  padding: 80px 10%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background:
+    radial-gradient(circle at 80% 20%, #f8dfe3 0, transparent 30%),
+    radial-gradient(circle at 20% 80%, #f5e8dd 0, transparent 35%),
+    #fffaf8;
+}
+
+.hero-content {
+  max-width: 650px;
+}
+
+.hero-label {
+  color: #c98792;
+  font-size: 13px;
+  letter-spacing: 3px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: 56px;
+  line-height: 1.4;
+  font-weight: 500;
+  color: #51494c;
+}
+
+.hero-description {
+  margin-top: 28px;
+  font-size: 17px;
+  line-height: 2;
+  color: #7a7074;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 16px;
+  margin-top: 36px;
+}
+
+.primary-button,
+.secondary-button {
+  display: inline-block;
+  padding: 14px 30px;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+.primary-button {
+  background-color: #d58c99;
+  color: white;
+  box-shadow: 0 8px 20px rgba(213, 140, 153, 0.25);
+}
+
+.primary-button:hover {
+  transform: translateY(-2px);
+}
+
+.secondary-button {
+  border: 1px solid #d8c5c8;
+  color: #8d7379;
+  background-color: white;
+}
+
+.hero-visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-visual img {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  display: block;
+}
+
+.about {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 90px 24px 70px;
+  text-align: center;
+}
+
+.section-label {
+  margin-bottom: 16px;
+  color: #c98792;
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 4px;
+}
+
+.about h2 {
+  margin: 0 0 28px;
+  color: #51494c;
+  font-size: 32px;
+  font-weight: 400;
+  letter-spacing: 2px;
+}
+
+.about p:not(.section-label) {
+  margin: 8px 0;
+  color: #7a7074;
+  font-size: 15px;
+  line-height: 2;
+}
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px 24px 100px;
+}
+
+.feature {
+  padding: 36px 24px;
+  text-align: center;
+  background-color: #fff;
+  border-radius: 24px;
+  box-shadow: 0 10px 30px rgba(180, 140, 145, 0.08);
+}
+
+.feature-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 54px;
+  height: 54px;
+  margin: 0 auto 20px;
+  border-radius: 50%;
+  background-color: #f9e8e9;
+  color: #c98792;
+  font-size: 22px;
+}
+
+.feature h3 {
+  margin-bottom: 14px;
+  color: #5c5356;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.feature p {
+  margin: 0;
+  color: #8b7e82;
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+.hero-decoration {
+  min-width: 280px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+  font-size: 58px;
+  opacity: 0.8;
+}
+
+footer {
+  padding: 30px;
+  text-align: center;
+  background-color: #f8eeee;
+  color: #9a888d;
+  font-size: 13px;
+}
+
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+  }
+
+  .header-logo {
+    width: 320px;
+  }
+
+  .hero {
+    padding: 50px 24px;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero h1 {
+    font-size: 38px;
+  }
+
+  .hero-buttons {
+    justify-content: center;
+  }
+
+  .hero-decoration {
+    margin-top: 50px;
+    flex-direction: row;
+    min-width: auto;
+    font-size: 40px;
+  }
+}
