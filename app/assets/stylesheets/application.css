@@ -41,6 +41,18 @@ header nav a {
   box-shadow: 0 6px 18px rgba(180, 140, 145, 0.1);
 }
 
+.flash-alert {
+  max-width: 600px;
+  margin: 24px auto;
+  padding: 14px 20px;
+  text-align: center;
+  color: #9a5f68;
+  background-color: #fce8eb;
+  border: 1px solid #f3d1d6;
+  border-radius: 14px;
+  box-shadow: 0 6px 18px rgba(180, 140, 145, 0.1);
+}
+
 /* =========================
    TOP
 ========================= */
