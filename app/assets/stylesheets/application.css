@@ -30,6 +30,21 @@ header nav a {
   height: auto;
 }
 
+.flash-notice {
+  max-width: 600px;
+  margin: 24px auto;
+  padding: 14px 20px;
+  text-align: center;
+  color: #8d5f68;
+  background-color: #fbeaec;
+  border-radius: 14px;
+  box-shadow: 0 6px 18px rgba(180, 140, 145, 0.1);
+}
+
+/* =========================
+   TOP
+========================= */
+
 .hero {
   min-height: 70vh;
   padding: 80px 10%;
@@ -197,6 +212,97 @@ header nav a {
   opacity: 0.8;
 }
 
+/* =========================
+   SIGN UP
+========================= */
+
+.signup-page {
+  min-height: 75vh;
+  padding: 80px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    radial-gradient(circle at 15% 20%, #f8dfe3 0, transparent 28%),
+    radial-gradient(circle at 85% 80%, #f5e8dd 0, transparent 30%),
+    #fffaf8;
+}
+
+.signup-card {
+  width: 100%;
+  max-width: 600px;
+  padding: 48px 56px;
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 28px;
+  box-shadow: 0 14px 40px rgba(180, 140, 145, 0.12);
+}
+
+.signup-card h1 {
+  margin: 0 0 16px;
+  color: #51494c;
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 1.45;
+}
+
+.signup-description {
+  margin-bottom: 32px;
+  color: #7a7074;
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  color: #665d61;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.form-group input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 14px 16px;
+  border: 1px solid #eadbdd;
+  border-radius: 14px;
+  background-color: #fffdfc;
+  color: #4b4548;
+  font-size: 15px;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #d58c99;
+  box-shadow: 0 0 0 3px rgba(213, 140, 153, 0.12);
+}
+
+.signup-actions {
+  margin-top: 8px;
+}
+
+.signup-button {
+  width: 100%;
+  box-sizing: border-box;
+  border: none;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
 footer {
   padding: 30px;
   text-align: center;
@@ -204,6 +310,10 @@ footer {
   color: #9a888d;
   font-size: 13px;
 }
+
+/* =========================
+   MOBILE
+========================= */
 
 @media (max-width: 768px) {
   header {
@@ -233,5 +343,21 @@ footer {
     flex-direction: row;
     min-width: auto;
     font-size: 40px;
+  }
+
+  .features {
+    grid-template-columns: 1fr;
+  }
+
+  .signup-page {
+    padding: 50px 20px;
+  }
+
+  .signup-card {
+    padding: 36px 24px;
+  }
+
+  .signup-card h1 {
+    font-size: 28px;
   }
 }
