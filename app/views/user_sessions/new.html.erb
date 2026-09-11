@@ -1,0 +1,27 @@
+<section class="signup-page">
+  <div class="signup-card">
+    <p class="section-label">LOGIN</p>
+
+    <h1>おかえりなさい。</h1>
+
+    <p class="signup-description">
+      ログインして、遠征の思い出を振り返ろう。
+    </p>
+
+    <%= form_with url: user_session_path, method: :post, class: "signup-form" do |f| %>
+      <div class="form-group">
+        <%= f.label :email, "メールアドレス" %>
+        <%= f.email_field :email, placeholder: "example@example.com" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :password, "パスワード" %>
+        <%= f.password_field :password, placeholder: "パスワードを入力" %>
+      </div>
+
+      <div class="signup-actions">
+        <%= f.submit "ログイン →", class: "primary-button signup-button" %>
+      </div>
+    <% end %>
+  </div>
+</section>
