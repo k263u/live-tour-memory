@@ -312,6 +312,87 @@ header nav a {
 }
 
 /* =========================
+   TRIP FORM
+========================= */
+
+.trip-page {
+  min-height: 75vh;
+  padding: 80px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    radial-gradient(circle at 15% 20%, #f8dfe3 0, transparent 28%),
+    radial-gradient(circle at 85% 80%, #f5e8dd 0, transparent 30%),
+    #fffaf8;
+}
+
+.trip-card {
+  width: 100%;
+  max-width: 720px;
+  padding: 48px 56px;
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 28px;
+  box-shadow: 0 14px 40px rgba(180, 140, 145, 0.12);
+}
+
+.trip-card h1 {
+  margin: 0 0 12px;
+  color: #51494c;
+  font-size: 32px;
+  font-weight: 500;
+}
+
+.trip-description {
+  margin: 0 0 32px;
+  color: #7a7074;
+  font-size: 15px;
+}
+
+.trip-form {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.trip-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.trip-form textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 14px 16px;
+  border: 1px solid #eadbdd;
+  border-radius: 14px;
+  background-color: #fffdfc;
+  color: #4b4548;
+  font-family: inherit;
+  font-size: 15px;
+  resize: vertical;
+}
+
+.trip-form textarea:focus {
+  outline: none;
+  border-color: #d58c99;
+  box-shadow: 0 0 0 3px rgba(213, 140, 153, 0.12);
+}
+
+.trip-actions {
+  margin-top: 8px;
+}
+
+.trip-button {
+  width: 100%;
+  box-sizing: border-box;
+  border: none;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+/* =========================
    FOOTER
 ========================= */
 
@@ -371,5 +452,21 @@ footer {
 
   .signup-card h1 {
     font-size: 28px;
+  }
+
+  .trip-page {
+    padding: 50px 20px;
+  }
+
+  .trip-card {
+    padding: 36px 24px;
+  }
+
+  .trip-card h1 {
+    font-size: 28px;
+  }
+
+  .trip-form-row {
+    grid-template-columns: 1fr;
   }
 }

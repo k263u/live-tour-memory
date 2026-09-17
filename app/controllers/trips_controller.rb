@@ -1,0 +1,23 @@
+class TripsController < ApplicationController
+  before_action :require_login
+
+  def new
+    @trip = Trip.new
+  end
+
+  def create
+    @trip = current_user.trips.build(trip_params)
+
+    if @trip.save
+      redirect_to root_path, notice: "遠征記録を作成しました"
+    else
+      render :new, status: :unprocessable_content
+    end
+  end
+
+  private
+
+  def trip_params
+    params.require(:trip).permit(:live_name, :artist_name, :event_date, :venue, :hotel, :transportation, :cost, :memo)
+  end
+end
