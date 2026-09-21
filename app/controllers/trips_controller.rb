@@ -19,6 +19,12 @@ class TripsController < ApplicationController
     @trips = current_user.trips.order(event_date: :desc)
   end
 
+  def show
+    @trip = current_user.trips.find_by(id: params[:id])
+
+    redirect_to trips_path, alert: "遠征記録が見つかりません" unless @trip
+  end
+
   private
 
   def trip_params

@@ -20,7 +20,7 @@
               <%= trip.event_date.strftime("%Y.%m.%d") %>
             </p>
 
-            <h2><%= trip.live_name %></h2>
+            <h2><%= link_to trip.live_name, trip_path(trip), class: "trip-title-link" %></h2>
 
             <% if trip.artist_name.present? %>
               <p class="trip-artist"><%= trip.artist_name %></p>
