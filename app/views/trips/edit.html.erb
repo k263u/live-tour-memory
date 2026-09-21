@@ -51,9 +51,15 @@
         <%= f.text_area :memo, rows: 5, placeholder: "遠征の思い出や感想など" %>
       </div>
 
-      <div class="trip-actions">
+     <div class="trip-actions">
+       <%= link_to "この記録を削除", trip_path(@trip), data: {turbo_method: :delete, turbo_confirm: "この遠征記録を削除しますか？"}, class: "trip-delete-button" %>
+
        <%= f.submit "変更を保存する", class: "trip-update-button" %>
+     </div>
+   <% end %>
+
+      <div class="trip-back-actions">
+       <%= link_to "← 一覧に戻る", trips_path, class: "trip-back-link" %>
       </div>
-    <% end %>
   </div>
 </div>
