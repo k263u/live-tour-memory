@@ -9,7 +9,7 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 8%;
+  padding: 4px 8%;
   background-color: rgba(255, 255, 255, 0.9);
 }
 
@@ -25,7 +25,7 @@ header nav a {
 }
 
 .header-logo {
-  width: 450px;
+  width: 300px;
   max-width: 100%;
   height: auto;
 }
@@ -317,9 +317,9 @@ header nav a {
 
 .trip-page {
   min-height: 75vh;
-  padding: 80px 24px;
+  padding: 36px 24px 56px;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   background:
     radial-gradient(circle at 15% 20%, #f8dfe3 0, transparent 28%),
@@ -432,7 +432,7 @@ header nav a {
 
 .trip-index-page {
   min-height: 75vh;
-  padding: 70px 24px 100px;
+  padding: 36px 24px 56px;
   background:
     radial-gradient(circle at 10% 15%, #f8dfe3 0, transparent 25%),
     radial-gradient(circle at 90% 85%, #f5e8dd 0, transparent 28%),
@@ -449,7 +449,7 @@ header nav a {
   align-items: flex-end;
   justify-content: space-between;
   gap: 30px;
-  margin-bottom: 42px;
+  margin-bottom: 28px;
 }
 
 .trip-index-header h1 {
@@ -542,7 +542,7 @@ header nav a {
 
 .trip-show-page {
   min-height: 100vh;
-  padding: 64px 24px;
+  padding: 36px 24px 56px;
   background: #fff9f8;
 }
 
@@ -563,51 +563,50 @@ header nav a {
 }
 
 .trip-show-container > p:not(.section-label) {
-  margin: 8px 0 32px;
+  margin: 8px 0 20px;
   color: #9a8585;
   font-size: 19px;
 }
 
 .trip-show-card {
-  margin-top: 32px;
-  padding: 32px 36px 24px;
+  margin-top: 0;
+  padding: 24px 28px 20px;
   background: #ffffff;
   border: 1px solid #f1dddd;
   border-radius: 20px;
   box-shadow: 0 8px 24px rgba(110, 80, 80, 0.06);
 }
 
-.trip-show-container dl {
+.trip-detail-grid {
   display: grid;
-  grid-template-columns: 130px 1fr;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0px 24px;
   margin: 0;
-  padding: 0;
 }
 
-.trip-show-container dt,
-.trip-show-container dd {
-  padding: 18px 0;
-  border-bottom: 1px solid #f5e9e7;
+.trip-detail-item {
+  padding: 12px 20px;
 }
 
-.trip-show-container dt {
+.trip-detail-item dt {
+  margin-bottom: 8px;
   color: #b68181;
   font-size: 14px;
   font-weight: 600;
 }
 
-.trip-show-container dd {
+.trip-detail-item dd {
   margin: 0;
   color: #554848;
-  line-height: 1.8;
+  line-height: 1.6;
 }
 
-.trip-show-container dt:last-of-type,
-.trip-show-container dd:last-of-type {
-  border-bottom: none;
+.trip-detail-cost,
+.trip-detail-memo {
+  grid-column: 1 / -1;
 }
 
-.trip-show-container dd:last-of-type {
+.trip-detail-memo dd {
   white-space: pre-wrap;
 }
 
@@ -631,8 +630,9 @@ header nav a {
 
 .trip-show-actions {
   display: flex;
-  justify-content: flex-end;
-  margin-top: 20px;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 16px;
 }
 
 .trip-edit-button {
@@ -686,13 +686,13 @@ footer {
   }
 
   .hero {
-    padding: 50px 24px;
+    padding: 32px 24px;
     flex-direction: column;
     text-align: center;
   }
 
   .hero h1 {
-    font-size: 38px;
+    font-size: 30px;
   }
 
   .hero-buttons {
@@ -704,6 +704,24 @@ footer {
     flex-direction: row;
     min-width: auto;
     font-size: 40px;
+  }
+
+  .hero-description {
+    font-size: 13px;
+    line-height: 1.8;
+  }
+
+  .about {
+   padding: 48px 24px 40px;
+  }
+
+  .about > p:not(.section-label) {
+    max-width: 280px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    font-size: 15px;
+    line-height: 1.8;
   }
 
   .features {
@@ -746,22 +764,46 @@ footer {
    font-size: 26px;
   }
 
-  .trip-show-container dl {
-    grid-template-columns: 1fr;
-    padding: 20px 24px;
+  .trip-detail-grid {
+   grid-template-columns: 1fr;
+   gap: 0;
   }
 
-  .trip-show-container dt {
-    padding: 16px 0 4px;
-    border-bottom: none;
+  .trip-detail-item,
+  .trip-detail-cost,
+  .trip-detail-memo {
+   grid-column: 1;
+   padding: 12px 8px;
   }
 
-  .trip-show-container dd {
-    padding: 0 0 16px;
+  .trip-detail-item dt {
+   margin-bottom: 6px;
   }
 
-  .trip-show-container dd:last-of-type {
-    padding-bottom: 0;
+  .trip-show-card {
+    padding: 20px 20px 16px;
+  }
+
+  .trip-show-actions {
+   margin-top: 12px;
+  }
+
+  .trip-list {
+   grid-template-columns: 1fr;
+  }
+
+  .trip-index-header h1 {
+   font-size: 26px;
+  }
+
+  .trip-index-header {
+   flex-direction: column;
+   align-items: flex-start;
+   gap: 20px;
+  }
+
+  .trip-index-header h1 {
+   font-size: 28px;
   }
 
 }

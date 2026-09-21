@@ -8,33 +8,44 @@
       <p><%= @trip.artist_name %></p>
     <% end %>
 
-  <div class="trip-show-card">
-    <dl>
-      <dt>日付</dt>
-      <dd><%= @trip.event_date.strftime("%Y.%m.%d") %></dd>
+    <div class="trip-show-card">
+      <dl class="trip-detail-grid">
+        <div class="trip-detail-item">
+          <dt>日付</dt>
+          <dd><%= @trip.event_date.strftime("%Y.%m.%d") %></dd>
+        </div>
 
-      <dt>会場</dt>
-      <dd><%= @trip.venue %></dd>
+        <div class="trip-detail-item">
+          <dt>会場</dt>
+          <dd><%= @trip.venue %></dd>
+        </div>
 
-      <dt>宿泊先</dt>
-      <dd><%= @trip.hotel.presence || "未登録" %></dd>
+        <div class="trip-detail-item">
+          <dt>宿泊先</dt>
+          <dd><%= @trip.hotel.presence || "未登録" %></dd>
+        </div>
 
-      <dt>交通手段</dt>
-      <dd><%= @trip.transportation.presence || "未登録" %></dd>
+        <div class="trip-detail-item">
+          <dt>交通手段</dt>
+          <dd><%= @trip.transportation.presence || "未登録" %></dd>
+        </div>
 
-      <dt>費用</dt>
-      <dd><%= @trip.cost.present? ? "#{number_with_delimiter(@trip.cost)}円" : "未登録" %></dd>
+       <div class="trip-detail-item trip-detail-cost">
+          <dt>費用</dt>
+          <dd><%= @trip.cost.present? ? "#{number_with_delimiter(@trip.cost)}円" : "未登録" %></dd>
+        </div>
 
-      <dt>感想</dt>
-      <dd><%= @trip.memo.presence || "未登録" %></dd>
-    </dl>
+        <div class="trip-detail-item trip-detail-memo">
+          <dt>感想</dt>
+          <dd><%= @trip.memo.presence || "未登録" %></dd>
+        </div>
+      </dl>
 
-    <div class="trip-show-actions">
-     <%= link_to "編集する", edit_trip_path(@trip), class: "trip-edit-button" %>
-    </div>
-    
-    <div class="trip-back-actions">
-     <%= link_to "← 一覧に戻る", trips_path, class: "trip-back-link" %>
-    </div>
-</div>
+      <div class="trip-show-actions">
+         <%= link_to "← 一覧に戻る", trips_path, class: "trip-back-link" %>
+         <%= link_to "編集する", edit_trip_path(@trip), class: "trip-edit-button" %>
+      </div>
+
+     </div>
+  </div>
 </section>
