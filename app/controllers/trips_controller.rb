@@ -46,6 +46,18 @@ class TripsController < ApplicationController
   end
 end
 
+  def destroy
+    @trip = current_user.trips.find_by(id: params[:id])
+
+    unless @trip
+     redirect_to trips_path, alert: "遠征記録が見つかりません"
+    return
+    end
+
+    @trip.destroy
+    redirect_to trips_path, notice: "遠征記録を削除しました"
+  end
+
   private
 
   def trip_params
