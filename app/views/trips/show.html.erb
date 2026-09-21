@@ -8,6 +8,7 @@
       <p><%= @trip.artist_name %></p>
     <% end %>
 
+  <div class="trip-show-card">
     <dl>
       <dt>日付</dt>
       <dd><%= @trip.event_date.strftime("%Y.%m.%d") %></dd>
@@ -28,5 +29,8 @@
       <dd><%= @trip.memo.presence || "未登録" %></dd>
     </dl>
 
-  </div>
+    <div class="trip-show-actions">
+     <%= link_to "編集する", edit_trip_path(@trip), class: "trip-edit-button" %>
+    </div>
+</div>
 </section>
