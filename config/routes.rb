@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :users, only: %i[new create]
   resource :user_session, only: %i[new create destroy]
-  resources :trips, only: %i[index new create]
+  resources :trips, only: %i[index show new create]
 
   get "home/top"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

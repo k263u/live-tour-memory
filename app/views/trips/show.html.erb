@@ -1,0 +1,32 @@
+<section class="trip-show-page">
+  <div class="trip-show-container">
+    <p class="section-label">TRIP MEMORY</p>
+
+    <h1><%= @trip.live_name %></h1>
+
+    <% if @trip.artist_name.present? %>
+      <p><%= @trip.artist_name %></p>
+    <% end %>
+
+    <dl>
+      <dt>日付</dt>
+      <dd><%= @trip.event_date.strftime("%Y.%m.%d") %></dd>
+
+      <dt>会場</dt>
+      <dd><%= @trip.venue %></dd>
+
+      <dt>宿泊先</dt>
+      <dd><%= @trip.hotel.presence || "未登録" %></dd>
+
+      <dt>交通手段</dt>
+      <dd><%= @trip.transportation.presence || "未登録" %></dd>
+
+      <dt>費用</dt>
+      <dd><%= @trip.cost.present? ? "#{@trip.cost.to_s(:delimited)}円" : "未登録" %></dd>
+
+      <dt>感想</dt>
+      <dd><%= @trip.memo.presence || "未登録" %></dd>
+    </dl>
+
+  </div>
+</section>
