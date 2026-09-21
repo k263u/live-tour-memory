@@ -15,6 +15,10 @@ class TripsController < ApplicationController
     end
   end
 
+  def index
+    @trips = current_user.trips.order(event_date: :desc)
+  end
+
   private
 
   def trip_params

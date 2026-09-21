@@ -1,0 +1,45 @@
+<section class="trip-index-page">
+  <div class="trip-index-container">
+    <div class="trip-index-header">
+      <div>
+        <p class="section-label">MY TRIPS</p>
+        <h1>遠征の思い出</h1>
+        <p class="trip-index-description">
+          ライブと旅の記録を振り返ろう
+        </p>
+      </div>
+
+      <%= link_to "＋ 新しい遠征を記録", new_trip_path, class: "primary-button" %>
+    </div>
+
+    <% if @trips.any? %>
+      <div class="trip-list">
+        <% @trips.each do |trip| %>
+          <div class="trip-list-card">
+            <p class="trip-date">
+              <%= trip.event_date.strftime("%Y.%m.%d") %>
+            </p>
+
+            <h2><%= trip.live_name %></h2>
+
+            <% if trip.artist_name.present? %>
+              <p class="trip-artist"><%= trip.artist_name %></p>
+            <% end %>
+
+            <p class="trip-venue">
+              📍 <%= trip.venue %>
+            </p>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <div class="trip-empty">
+        <p class="trip-empty-icon">🎫</p>
+        <p>まだ遠征記録がありません。</p>
+        <p class="trip-empty-message">
+          最初の思い出を記録してみよう
+        </p>
+      </div>
+    <% end %>
+  </div>
+</section>

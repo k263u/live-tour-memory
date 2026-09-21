@@ -393,6 +393,116 @@ header nav a {
 }
 
 /* =========================
+   TRIP INDEX
+========================= */
+
+.trip-index-page {
+  min-height: 75vh;
+  padding: 70px 24px 100px;
+  background:
+    radial-gradient(circle at 10% 15%, #f8dfe3 0, transparent 25%),
+    radial-gradient(circle at 90% 85%, #f5e8dd 0, transparent 28%),
+    #fffaf8;
+}
+
+.trip-index-container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.trip-index-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 30px;
+  margin-bottom: 42px;
+}
+
+.trip-index-header h1 {
+  margin: 0;
+  color: #51494c;
+  font-size: 36px;
+  font-weight: 500;
+}
+
+.trip-index-description {
+  margin: 12px 0 0;
+  color: #8b7e82;
+  font-size: 15px;
+}
+
+.trip-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.trip-list-card {
+  padding: 30px;
+  background-color: rgba(255, 255, 255, 0.95);
+  border: 1px solid #f2e5e6;
+  border-radius: 24px;
+  box-shadow: 0 10px 30px rgba(180, 140, 145, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.trip-list-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 34px rgba(180, 140, 145, 0.16);
+}
+
+.trip-date {
+  margin: 0 0 14px;
+  color: #c98792;
+  font-size: 13px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.trip-list-card h2 {
+  margin: 0 0 8px;
+  color: #51494c;
+  font-size: 22px;
+  font-weight: 500;
+}
+
+.trip-artist {
+  margin: 0 0 22px;
+  color: #8d7379;
+  font-size: 14px;
+}
+
+.trip-venue {
+  margin: 0;
+  padding-top: 18px;
+  border-top: 1px solid #f3e8e9;
+  color: #7a7074;
+  font-size: 14px;
+}
+
+.trip-empty {
+  padding: 70px 24px;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid #f2e5e6;
+  border-radius: 28px;
+}
+
+.trip-empty-icon {
+  margin: 0 0 18px;
+  font-size: 38px;
+}
+
+.trip-empty p {
+  color: #665d61;
+}
+
+.trip-empty-message {
+  color: #9a888d !important;
+  font-size: 14px;
+}
+
+/* =========================
    FOOTER
 ========================= */
 
