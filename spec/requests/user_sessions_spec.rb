@@ -10,7 +10,7 @@ RSpec.describe "UserSessions", type: :request do
         password: "password"
       }
 
-      expect(response).to redirect_to(root_path)
+      expect(response).to redirect_to(trips_path)
     end
 
     it "パスワードが間違っている場合はログインできないこと" do
