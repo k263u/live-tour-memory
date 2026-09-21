@@ -28,6 +28,32 @@ RSpec.describe "Trips", type: :system do
 
       expect(page).to have_content "遠征記録を作成しました"
     end
+
+    it "自分の遠征記録が一覧に表示される" do
+      create(:trip, user: user, live_name: "自分のライブ")
+
+      visit trips_path
+
+      expect(page).to have_content "自分のライブ"
+    end
+
+    it "他のユーザーの遠征記録は一覧に表示されない" do
+      other_user = create(:user)
+      create(:trip, user: other_user, live_name: "他のユーザーのライブ")
+
+      visit trips_path
+
+      expect(page).not_to have_content "他のユーザーのライブ"
+    end
+
+    it "遠征記録が開催日の新しい順に表示される" do
+      create(:trip, user: user, live_name: "古いライブ", event_date: "2026-09-01")
+      create(:trip, user: user, live_name: "新しいライブ", event_date: "2026-10-01")
+
+      visit trips_path
+
+      expect(page.body.index("新しいライブ")).to be < page.body.index("古いライブ")
+    end
   end
 
   context "ログインしていない場合" do
