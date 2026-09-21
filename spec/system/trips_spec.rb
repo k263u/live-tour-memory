@@ -54,6 +54,37 @@ RSpec.describe "Trips", type: :system do
 
       expect(page.body.index("新しいライブ")).to be < page.body.index("古いライブ")
     end
+
+    it "自分の遠征記録の詳細が表示される" do
+      trip = create(:trip, user: user, live_name: "LIVE TOUR 2026", venue: "テスト会場", hotel: "テストホテル", transportation: "新幹線", cost: 30000, memo: "最高のライブだった")
+
+      visit trip_path(trip)
+
+      expect(page).to have_content "LIVE TOUR 2026"
+      expect(page).to have_content "テスト会場"
+      expect(page).to have_content "テストホテル"
+      expect(page).to have_content "新幹線"
+      expect(page).to have_content "30,000円"
+      expect(page).to have_content "最高のライブだった"
+    end
+
+    it "他のユーザーの遠征記録は閲覧できない" do
+      other_user = create(:user)
+      other_trip = create(:trip, user: other_user)
+
+      visit trip_path(other_trip)
+
+      expect(page).to have_current_path(trips_path)
+      expect(page).to have_content "遠征記録が見つかりません"
+    end
+
+    it "任意項目が未登録の場合は未登録と表示される" do
+      trip = create(:trip, user: user, hotel: nil, transportation: nil, cost: nil, memo: nil)
+
+      visit trip_path(trip)
+
+      expect(page).to have_content("未登録", count: 4)
+    end
   end
 
   context "ログインしていない場合" do
