@@ -381,7 +381,19 @@ header nav a {
 }
 
 .trip-actions {
+  display: flex;
+  justify-content: flex-end;
   margin-top: 8px;
+}
+
+.trip-update-button {
+  padding: 10px 24px;
+  background-color: #d58b99;
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  font-size: 14px;
+  cursor: pointer;
 }
 
 .trip-button {
@@ -531,18 +543,23 @@ header nav a {
 .trip-show-container > p:not(.section-label) {
   margin: 8px 0 32px;
   color: #9a8585;
-  font-size: 15px;
+  font-size: 19px;
+}
+
+.trip-show-card {
+  margin-top: 32px;
+  padding: 32px 36px 24px;
+  background: #ffffff;
+  border: 1px solid #f1dddd;
+  border-radius: 20px;
+  box-shadow: 0 8px 24px rgba(110, 80, 80, 0.06);
 }
 
 .trip-show-container dl {
   display: grid;
   grid-template-columns: 130px 1fr;
-  margin-top: 32px;
-  padding: 32px 36px;
-  background: #ffffff;
-  border: 1px solid #f1dddd;
-  border-radius: 20px;
-  box-shadow: 0 8px 24px rgba(110, 80, 80, 0.06);
+  margin: 0;
+  padding: 0;
 }
 
 .trip-show-container dt,
@@ -572,6 +589,14 @@ header nav a {
   white-space: pre-wrap;
 }
 
+.trip-show-container h1 {
+  margin: 0;
+  color: #4d4141;
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
 /* 一覧画面のライブ名リンク */
 .trip-title-link {
   color: inherit;
@@ -580,6 +605,22 @@ header nav a {
 
 .trip-title-link:hover {
   color: #c17d7d;
+}
+
+.trip-show-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.trip-edit-button {
+  display: inline-block;
+  padding: 10px 24px;
+  background-color: #d58b99;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 999px;
+  font-size: 14px;
 }
 
 /* =========================
@@ -685,4 +726,5 @@ footer {
   .trip-show-container dd:last-of-type {
     padding-bottom: 0;
   }
+
 }
