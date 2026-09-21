@@ -18,7 +18,11 @@
   </head>
 
   <body>
-  <%= render "shared/header" %>
+  <% if logged_in? %>
+    <%= render "shared/logged_in_header" %>
+  <% else %>
+    <%= render "shared/header" %>
+  <% end %>
 
   <main>
     <% if notice %>
