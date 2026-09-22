@@ -358,7 +358,15 @@ header nav a {
 .trip-form-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 20px;
+  row-gap: 28px;
+  column-gap: 20px;
+}
+
+.trip-form-section > .form-group + .form-group,
+.trip-form-section > .form-group + .trip-form-row,
+.trip-form-section > .trip-form-row + .trip-form-row,
+.trip-form-section > .trip-form-row + .form-group {
+  margin-top: 20px;
 }
 
 .trip-form textarea {
@@ -562,6 +570,7 @@ header nav a {
   margin: 0;
   color: #4d4141;
   font-size: 32px;
+  font-weight: 500;
   line-height: 1.4;
 }
 
@@ -573,22 +582,40 @@ header nav a {
 
 .trip-show-card {
   margin-top: 0;
-  padding: 24px 28px 20px;
+  padding: 32px 36px 28px;
   background: #ffffff;
   border: 1px solid #f1dddd;
   border-radius: 20px;
   box-shadow: 0 8px 24px rgba(110, 80, 80, 0.06);
 }
 
+/* セクション */
+
+.trip-detail-section + .trip-detail-section {
+  margin-top: 48px;
+}
+
+.trip-detail-section-title {
+  margin: 0 0 28px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eadde0;
+  color: #555;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* 各項目 */
+
 .trip-detail-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 0px 24px;
+  column-gap: 56px;
+  row-gap: 24px;
   margin: 0;
 }
 
 .trip-detail-item {
-  padding: 12px 20px;
+  padding: 0;
 }
 
 .trip-detail-item dt {
@@ -604,38 +631,61 @@ header nav a {
   line-height: 1.6;
 }
 
-.trip-detail-cost,
-.trip-detail-memo {
-  grid-column: 1 / -1;
+/* その他費用メモ */
+
+.trip-other-cost-memo {
+  margin-top: 24px;
 }
 
-.trip-detail-memo dd {
+.trip-other-cost-memo span {
+  color: #b68181;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.trip-other-cost-memo p {
+  margin: 8px 0 0;
+  color: #554848;
+}
+
+/* 費用合計 */
+
+.trip-cost-total {
+  display: flex;
+  justify-content: flex-end;
+  align-items: baseline;
+  gap: 16px;
+  margin-top: 32px;
+  padding-top: 20px;
+  border-top: 1px solid #eadde0;
+}
+
+.trip-cost-total span {
+  color: #777;
+  font-size: 14px;
+}
+
+.trip-cost-total strong {
+  color: #c87888;
+  font-size: 20px;
+}
+
+/* 思い出・メモ */
+
+.trip-detail-memo p {
+  margin: 0;
+  color: #554848;
+  line-height: 1.8;
   white-space: pre-wrap;
 }
 
-.trip-show-container h1 {
-  margin: 0;
-  color: #4d4141;
-  font-size: 32px;
-  font-weight: 500;
-  line-height: 1.4;
-}
-
-/* 一覧画面のライブ名リンク */
-.trip-title-link {
-  color: inherit;
-  text-decoration: none;
-}
-
-.trip-title-link:hover {
-  color: #c17d7d;
-}
+/* 詳細画面の操作 */
 
 .trip-show-actions {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 16px;
+  margin-top: 48px;
 }
 
 .trip-edit-button {
@@ -648,10 +698,6 @@ header nav a {
   font-size: 14px;
 }
 
-.trip-back-actions {
-  margin-top: 24px;
-}
-
 .trip-back-link {
   color: #9a8585;
   font-size: 14px;
@@ -661,6 +707,17 @@ header nav a {
 .trip-back-link:hover {
   color: #d58b99;
   text-decoration: underline;
+}
+
+/* 一覧画面のライブ名リンク */
+
+.trip-title-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.trip-title-link:hover {
+  color: #c17d7d;
 }
 
 /* =========================
@@ -809,4 +866,41 @@ footer {
    font-size: 28px;
   }
 
+}
+
+.trip-form-section {
+  margin-top: 36px;
+}
+
+.trip-form-section:first-child {
+  margin-top: 0;
+}
+
+.trip-form-section-title {
+  margin: 0 0 20px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #eadde0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #555;
+}
+
+.cost-total {
+  display: flex;
+  justify-content: flex-end;
+  align-items: baseline;
+  gap: 16px;
+  margin-top: 8px;
+  padding-top: 16px;
+  border-top: 1px solid #eadde0;
+}
+
+.cost-total span {
+  font-size: 14px;
+  color: #777;
+}
+
+.cost-total strong {
+  font-size: 20px;
+  color: #c87888;
 }

@@ -10,19 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_09_17_121830) do
+ActiveRecord::Schema[8.1].define(version: 2026_09_22_045047) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
   create_table "trips", force: :cascade do |t|
+    t.integer "accommodation_cost"
     t.string "artist_name"
-    t.integer "cost"
     t.datetime "created_at", null: false
     t.date "event_date", null: false
     t.string "hotel"
     t.string "live_name", null: false
     t.text "memo"
+    t.integer "other_cost"
+    t.string "other_cost_memo"
+    t.integer "ticket_cost"
     t.string "transportation"
+    t.integer "transportation_cost"
     t.datetime "updated_at", null: false
     t.bigint "user_id", null: false
     t.string "venue", null: false

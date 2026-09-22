@@ -7,7 +7,11 @@ FactoryBot.define do
     venue { "テスト会場" }
     hotel { "テストホテル" }
     transportation { "電車" }
-    cost { 50_000 }
+    ticket_cost { 12_000 }
+    transportation_cost { 20_000 }
+    accommodation_cost { 15_000 }
+    other_cost { 3_000 }
+    other_cost_memo { "食事代" }
     memo { "楽しかった！" }
   end
 end

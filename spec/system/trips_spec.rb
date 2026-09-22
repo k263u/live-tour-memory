@@ -62,7 +62,11 @@ RSpec.describe "Trips", type: :system do
         venue: "テスト会場",
         hotel: "テストホテル",
         transportation: "新幹線",
-        cost: 30000,
+        ticket_cost: 10_000,
+        transportation_cost: 8_000,
+        accommodation_cost: 10_000,
+        other_cost: 2_000,
+        other_cost_memo: "食事代",
         memo: "最高のライブだった"
       )
 
@@ -72,6 +76,10 @@ RSpec.describe "Trips", type: :system do
       expect(page).to have_content "テスト会場"
       expect(page).to have_content "テストホテル"
       expect(page).to have_content "新幹線"
+      expect(page).to have_content "10,000円"
+      expect(page).to have_content "8,000円"
+      expect(page).to have_content "2,000円"
+      expect(page).to have_content "食事代"
       expect(page).to have_content "30,000円"
       expect(page).to have_content "最高のライブだった"
     end
@@ -90,13 +98,18 @@ RSpec.describe "Trips", type: :system do
       trip.update!(
         hotel: nil,
         transportation: nil,
-        cost: nil,
+        ticket_cost: nil,
+        transportation_cost: nil,
+        accommodation_cost: nil,
+        other_cost: nil,
+        other_cost_memo: nil,
         memo: nil
       )
 
       visit trip_path(trip)
 
-      expect(page).to have_content("未登録", count: 4)
+      expect(page).to have_content "未登録"
+      expect(page).to have_content "0円"
     end
 
     it "自分の遠征記録の編集画面が表示される" do
@@ -127,13 +140,13 @@ RSpec.describe "Trips", type: :system do
     end
 
     it "必須項目が空の場合は遠征記録を更新できない" do
-     visit edit_trip_path(trip)
+      visit edit_trip_path(trip)
 
-     fill_in "ライブ名", with: ""
-     click_button "変更を保存する"
+      fill_in "ライブ名", with: ""
+      click_button "変更を保存する"
 
-     expect(page).to have_current_path(trip_path(trip))
-     expect(trip.reload.live_name).not_to eq ""
+      expect(page).to have_current_path(trip_path(trip))
+      expect(trip.reload.live_name).not_to eq ""
     end
 
     it "自分の遠征記録を削除でき、一覧からも消える" do

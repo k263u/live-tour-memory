@@ -7,49 +7,95 @@
     </p>
 
     <div class="trip-edit-layout">
-      <%= form_with model: @trip, class: "trip-form" do |f| %>
-        <div class="form-group">
-          <%= f.label :live_name, "ライブ名 *" %>
-          <%= f.text_field :live_name, placeholder: "例：〇〇 ARENA TOUR 2026" %>
-        </div>
+      <%= form_with model: @trip, class: "trip-form", data: { controller: "cost-calculator" } do |f| %>
 
-        <div class="form-group">
-          <%= f.label :artist_name, "アーティスト名" %>
-          <%= f.text_field :artist_name, placeholder: "例：〇〇〇〇" %>
-        </div>
+        <div class="trip-form-section">
+          <h2 class="trip-form-section-title">ライブ情報</h2>
 
-        <div class="trip-form-row">
           <div class="form-group">
-            <%= f.label :event_date, "開催日 *" %>
-            <%= f.date_field :event_date %>
+            <%= f.label :live_name, "ライブ名 *" %>
+            <%= f.text_field :live_name, placeholder: "例：〇〇 ARENA TOUR 2026" %>
           </div>
 
           <div class="form-group">
-            <%= f.label :venue, "会場 *" %>
-            <%= f.text_field :venue, placeholder: "例：東京ドーム" %>
+            <%= f.label :artist_name, "アーティスト名" %>
+            <%= f.text_field :artist_name, placeholder: "例：〇〇〇〇" %>
+          </div>
+
+          <div class="trip-form-row">
+            <div class="form-group">
+              <%= f.label :event_date, "開催日 *" %>
+              <%= f.date_field :event_date %>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :venue, "会場 *" %>
+              <%= f.text_field :venue, placeholder: "例：東京ドーム" %>
+            </div>
           </div>
         </div>
 
-        <div class="trip-form-row">
+        <div class="trip-form-section">
+          <h2 class="trip-form-section-title">遠征情報</h2>
+
+          <div class="trip-form-row">
+            <div class="form-group">
+              <%= f.label :hotel, "宿泊先" %>
+              <%= f.text_field :hotel, placeholder: "ホテル名など" %>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :transportation, "交通手段" %>
+              <%= f.text_field :transportation, placeholder: "飛行機・新幹線など" %>
+            </div>
+          </div>
+        </div>
+
+        <div class="trip-form-section">
+          <h2 class="trip-form-section-title">費用</h2>
+
+          <div class="trip-form-row">
+            <div class="form-group">
+              <%= f.label :ticket_cost, "チケット代" %>
+              <%= f.number_field :ticket_cost, placeholder: "例：12000", data: { cost_calculator_target: "cost", action: "input->cost-calculator#calculate" } %>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :transportation_cost, "交通費" %>
+              <%= f.number_field :transportation_cost, placeholder: "例：20000", data: { cost_calculator_target: "cost", action: "input->cost-calculator#calculate" } %>
+            </div>
+          </div>
+
+          <div class="trip-form-row">
+            <div class="form-group">
+              <%= f.label :accommodation_cost, "宿泊費" %>
+              <%= f.number_field :accommodation_cost, placeholder: "例：10000", data: { cost_calculator_target: "cost", action: "input->cost-calculator#calculate" } %>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :other_cost, "その他費用" %>
+              <%= f.number_field :other_cost, placeholder: "例：5000", data: { cost_calculator_target: "cost", action: "input->cost-calculator#calculate" } %>
+            </div>
+          </div>
+
           <div class="form-group">
-            <%= f.label :hotel, "宿泊先" %>
-            <%= f.text_field :hotel, placeholder: "ホテル名など" %>
+            <%= f.label :other_cost_memo, "その他費用メモ" %>
+            <%= f.text_field :other_cost_memo, placeholder: "例：食事代・コインロッカー" %>
           </div>
+
+          <div class="cost-total">
+            <span>遠征費用の合計</span>
+            <strong data-cost-calculator-target="total">0円</strong>
+          </div>
+        </div>
+
+        <div class="trip-form-section">
+          <h2 class="trip-form-section-title">思い出・メモ</h2>
 
           <div class="form-group">
-            <%= f.label :transportation, "交通手段" %>
-            <%= f.text_field :transportation, placeholder: "飛行機・新幹線など" %>
+            <%= f.label :memo, "メモ" %>
+            <%= f.text_area :memo, rows: 5, placeholder: "遠征の思い出や感想など" %>
           </div>
-        </div>
-
-        <div class="form-group">
-          <%= f.label :cost, "費用" %>
-          <%= f.number_field :cost, placeholder: "例：50000" %>
-        </div>
-
-        <div class="form-group">
-          <%= f.label :memo, "メモ" %>
-          <%= f.text_area :memo, rows: 5, placeholder: "遠征の思い出や感想など" %>
         </div>
 
         <div class="trip-update-actions">
