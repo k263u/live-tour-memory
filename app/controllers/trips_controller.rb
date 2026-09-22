@@ -61,6 +61,6 @@ end
   private
 
   def trip_params
-    params.require(:trip).permit(:live_name, :artist_name, :event_date, :venue, :hotel, :transportation, :cost, :memo)
+    params.require(:trip).permit(:live_name, :artist_name, :event_date, :venue, :hotel, :transportation, :ticket_cost, :transportation_cost, :accommodation_cost, :other_cost, :other_cost_memo, :memo)
   end
 end

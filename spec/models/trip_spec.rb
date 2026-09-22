@@ -34,4 +34,30 @@ RSpec.describe Trip, type: :model do
       expect(trip.user).to be_present
     end
   end
+
+  describe "#total_cost" do
+    it "各費用の合計を返す" do
+      trip = build(
+        :trip,
+        ticket_cost: 10_000,
+        transportation_cost: 15_000,
+        accommodation_cost: 8_000,
+        other_cost: 2_000
+      )
+
+      expect(trip.total_cost).to eq 35_000
+    end
+
+    it "未入力の費用があっても0円として計算する" do
+      trip = build(
+        :trip,
+        ticket_cost: 10_000,
+        transportation_cost: nil,
+        accommodation_cost: 8_000,
+        other_cost: nil
+      )
+
+      expect(trip.total_cost).to eq 18_000
+    end
+  end
 end

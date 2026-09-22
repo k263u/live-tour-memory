@@ -9,43 +9,90 @@
     <% end %>
 
     <div class="trip-show-card">
-      <dl class="trip-detail-grid">
-        <div class="trip-detail-item">
-          <dt>日付</dt>
-          <dd><%= @trip.event_date.strftime("%Y.%m.%d") %></dd>
-        </div>
 
-        <div class="trip-detail-item">
-          <dt>会場</dt>
-          <dd><%= @trip.venue %></dd>
-        </div>
+   <div class="trip-detail-section">
+  <h2 class="trip-detail-section-title">ライブ情報</h2>
 
-        <div class="trip-detail-item">
-          <dt>宿泊先</dt>
-          <dd><%= @trip.hotel.presence || "未登録" %></dd>
-        </div>
+  <dl class="trip-detail-grid">
+    <div class="trip-detail-item">
+      <dt>日付</dt>
+      <dd><%= @trip.event_date.strftime("%Y.%m.%d") %></dd>
+    </div>
 
-        <div class="trip-detail-item">
-          <dt>交通手段</dt>
-          <dd><%= @trip.transportation.presence || "未登録" %></dd>
-        </div>
+    <div class="trip-detail-item">
+      <dt>会場</dt>
+      <dd><%= @trip.venue %></dd>
+    </div>
+  </dl>
+</div>
 
-       <div class="trip-detail-item trip-detail-cost">
-          <dt>費用</dt>
-          <dd><%= @trip.cost.present? ? "#{number_with_delimiter(@trip.cost)}円" : "未登録" %></dd>
-        </div>
+<div class="trip-detail-section">
+  <h2 class="trip-detail-section-title">遠征情報</h2>
 
-        <div class="trip-detail-item trip-detail-memo">
-          <dt>感想</dt>
-          <dd><%= @trip.memo.presence || "未登録" %></dd>
-        </div>
-      </dl>
+  <dl class="trip-detail-grid">
+    <div class="trip-detail-item">
+      <dt>宿泊先</dt>
+      <dd><%= @trip.hotel.presence || "未登録" %></dd>
+    </div>
 
-      <div class="trip-show-actions">
-         <%= link_to "← 一覧に戻る", trips_path, class: "trip-back-link" %>
-         <%= link_to "編集する", edit_trip_path(@trip), class: "trip-edit-button" %>
+    <div class="trip-detail-item">
+      <dt>交通手段</dt>
+      <dd><%= @trip.transportation.presence || "未登録" %></dd>
+    </div>
+  </dl>
+</div>
+
+      <div class="trip-detail-section">
+        <h2 class="trip-detail-section-title">費用</h2>
+
+        <dl class="trip-detail-grid">
+          <div class="trip-detail-item">
+            <dt>チケット代</dt>
+            <dd><%= @trip.ticket_cost.present? ? "#{number_with_delimiter(@trip.ticket_cost)}円" : "未登録" %></dd>
+          </div>
+
+          <div class="trip-detail-item">
+            <dt>交通費</dt>
+            <dd><%= @trip.transportation_cost.present? ? "#{number_with_delimiter(@trip.transportation_cost)}円" : "未登録" %></dd>
+          </div>
+
+          <div class="trip-detail-item">
+            <dt>宿泊費</dt>
+            <dd><%= @trip.accommodation_cost.present? ? "#{number_with_delimiter(@trip.accommodation_cost)}円" : "未登録" %></dd>
+          </div>
+
+          <div class="trip-detail-item">
+            <dt>その他費用</dt>
+            <dd><%= @trip.other_cost.present? ? "#{number_with_delimiter(@trip.other_cost)}円" : "未登録" %></dd>
+          </div>
+        </dl>
+
+        <% if @trip.other_cost_memo.present? %>
+          <div class="trip-other-cost-memo">
+            <span>その他費用メモ</span>
+            <p><%= @trip.other_cost_memo %></p>
+          </div>
+        <% end %>
+
+        <div class="trip-cost-total">
+          <span>遠征費用の合計</span>
+          <strong><%= number_with_delimiter(@trip.total_cost) %>円</strong>
+        </div>
       </div>
 
-     </div>
+      <div class="trip-detail-section">
+        <h2 class="trip-detail-section-title">思い出・メモ</h2>
+
+        <div class="trip-detail-memo">
+          <p><%= @trip.memo.presence || "未登録" %></p>
+        </div>
+      </div>
+
+      <div class="trip-show-actions">
+        <%= link_to "← 一覧に戻る", trips_path, class: "trip-back-link" %>
+        <%= link_to "編集する", edit_trip_path(@trip), class: "trip-edit-button" %>
+      </div>
+
+    </div>
   </div>
 </section>
