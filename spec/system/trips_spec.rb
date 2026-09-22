@@ -135,6 +135,18 @@ RSpec.describe "Trips", type: :system do
      expect(page).to have_current_path(trip_path(trip))
      expect(trip.reload.live_name).not_to eq ""
     end
+
+    it "自分の遠征記録を削除でき、一覧からも消える" do
+      visit edit_trip_path(trip)
+
+      expect do
+        click_button "この記録を削除"
+      end.to change(Trip, :count).by(-1)
+
+      expect(page).to have_current_path(trips_path)
+      expect(page).to have_content "遠征記録を削除しました"
+      expect(page).not_to have_content trip.live_name
+    end
   end
 
   context "ログインしていない場合" do
