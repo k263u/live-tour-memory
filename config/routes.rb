@@ -16,4 +16,6 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "home#top"
+
+  get "r2_connection_test", to: "r2_connection_test#show"
 end
