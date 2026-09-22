@@ -32,3 +32,13 @@ local:
 #   service: Mirror
 #   primary: local
 #   mirrors: [ amazon, google, microsoft ]
+
+r2:
+  service: S3
+  access_key_id: <%= ENV["R2_ACCESS_KEY_ID"] %>
+  secret_access_key: <%= ENV["R2_SECRET_ACCESS_KEY"] %>
+  endpoint: <%= ENV["R2_ENDPOINT"] %>
+  region: auto
+  bucket: <%= ENV["R2_BUCKET"] %>
+  request_checksum_calculation: when_required
+  response_checksum_validation: when_required
