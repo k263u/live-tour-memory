@@ -380,10 +380,13 @@ header nav a {
   box-shadow: 0 0 0 3px rgba(213, 140, 153, 0.12);
 }
 
-.trip-actions {
+.trip-edit-layout {
+  position: relative;
+}
+
+.trip-update-actions {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: flex-end;
   margin-top: 32px;
 }
 
@@ -398,9 +401,9 @@ header nav a {
 }
 
 .trip-delete-actions {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 32px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
 }
 
 .trip-delete-button {

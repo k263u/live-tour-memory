@@ -1,65 +1,69 @@
 <div class="trip-page">
   <div class="trip-card">
-  <p class="section-label">EDIT TRIP</p>
-  <h1>遠征記録を編集</h1>
-  <p class="trip-description">
-  遠征の記録を編集しましょう
-  </p>  
+    <p class="section-label">EDIT TRIP</p>
+    <h1>遠征記録を編集</h1>
+    <p class="trip-description">
+      遠征の記録を編集しましょう
+    </p>
 
-    <%= form_with model: @trip, class: "trip-form" do |f| %>
-      <div class="form-group">
-        <%= f.label :live_name, "ライブ名 *" %>
-        <%= f.text_field :live_name, placeholder: "例：〇〇 ARENA TOUR 2026" %>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :artist_name, "アーティスト名" %>
-        <%= f.text_field :artist_name, placeholder: "例：〇〇〇〇" %>
-      </div>
-
-      <div class="trip-form-row">
+    <div class="trip-edit-layout">
+      <%= form_with model: @trip, class: "trip-form" do |f| %>
         <div class="form-group">
-          <%= f.label :event_date, "開催日 *" %>
-          <%= f.date_field :event_date %>
+          <%= f.label :live_name, "ライブ名 *" %>
+          <%= f.text_field :live_name, placeholder: "例：〇〇 ARENA TOUR 2026" %>
         </div>
 
         <div class="form-group">
-          <%= f.label :venue, "会場 *" %>
-          <%= f.text_field :venue, placeholder: "例：東京ドーム" %>
+          <%= f.label :artist_name, "アーティスト名" %>
+          <%= f.text_field :artist_name, placeholder: "例：〇〇〇〇" %>
         </div>
-      </div>
 
-      <div class="trip-form-row">
+        <div class="trip-form-row">
+          <div class="form-group">
+            <%= f.label :event_date, "開催日 *" %>
+            <%= f.date_field :event_date %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :venue, "会場 *" %>
+            <%= f.text_field :venue, placeholder: "例：東京ドーム" %>
+          </div>
+        </div>
+
+        <div class="trip-form-row">
+          <div class="form-group">
+            <%= f.label :hotel, "宿泊先" %>
+            <%= f.text_field :hotel, placeholder: "ホテル名など" %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :transportation, "交通手段" %>
+            <%= f.text_field :transportation, placeholder: "飛行機・新幹線など" %>
+          </div>
+        </div>
+
         <div class="form-group">
-          <%= f.label :hotel, "宿泊先" %>
-          <%= f.text_field :hotel, placeholder: "ホテル名など" %>
+          <%= f.label :cost, "費用" %>
+          <%= f.number_field :cost, placeholder: "例：50000" %>
         </div>
 
         <div class="form-group">
-          <%= f.label :transportation, "交通手段" %>
-          <%= f.text_field :transportation, placeholder: "飛行機・新幹線など" %>
+          <%= f.label :memo, "メモ" %>
+          <%= f.text_area :memo, rows: 5, placeholder: "遠征の思い出や感想など" %>
         </div>
+
+        <div class="trip-update-actions">
+          <%= f.submit "変更を保存する", class: "trip-update-button" %>
+        </div>
+      <% end %>
+
+      <div class="trip-delete-actions">
+        <%= button_to "この記録を削除", trip_path(@trip), method: :delete, data: { turbo_confirm: "この遠征記録を削除しますか？" }, class: "trip-delete-button" %>
       </div>
+    </div>
 
-      <div class="form-group">
-        <%= f.label :cost, "費用" %>
-        <%= f.number_field :cost, placeholder: "例：50000" %>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :memo, "メモ" %>
-        <%= f.text_area :memo, rows: 5, placeholder: "遠征の思い出や感想など" %>
-      </div>
-
-     <div class="trip-actions">
-       <%= link_to "この記録を削除", trip_path(@trip), data: {turbo_method: :delete, turbo_confirm: "この遠征記録を削除しますか？"}, class: "trip-delete-button" %>
-
-       <%= f.submit "変更を保存する", class: "trip-update-button" %>
-     </div>
-   <% end %>
-
-      <div class="trip-back-actions">
-       <%= link_to "← 一覧に戻る", trips_path, class: "trip-back-link" %>
-      </div>
+    <div class="trip-back-actions">
+      <%= link_to "← 一覧に戻る", trips_path, class: "trip-back-link" %>
+    </div>
   </div>
 </div>
