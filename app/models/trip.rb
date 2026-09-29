@@ -1,5 +1,7 @@
 class Trip < ApplicationRecord
   belongs_to :user
+  has_many :photos, dependent: :destroy
+  attr_accessor :images
 
   validates :live_name, presence: true
   validates :event_date, presence: true

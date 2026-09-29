@@ -904,3 +904,33 @@ footer {
   font-size: 20px;
   color: #c87888;
 }
+
+/* =========================
+   TRIP PHOTOS
+========================= */
+
+.trip-photos {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.trip-photo {
+  width: 100%;
+  height: 240px;
+  display: block;
+  object-fit: cover;
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(110, 80, 80, 0.1);
+}
+
+/* スマホ */
+@media (max-width: 768px) {
+  .trip-photos {
+    grid-template-columns: 1fr;
+  }
+
+  .trip-photo {
+    height: 220px;
+  }
+}

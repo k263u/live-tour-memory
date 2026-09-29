@@ -97,6 +97,15 @@
         </div>
       </div>
 
+      <div class="trip-form-section">
+        <h2 class="trip-form-section-title">写真</h2>
+
+        <div class="form-group">
+          <%= f.label :images, "写真を選択" %>
+          <%= f.file_field :images, multiple: true, accept: "image/*" %>
+        </div>
+      </div>
+
       <div class="trip-actions">
         <%= f.submit "遠征記録を登録する", class: "primary-button trip-button" %>
       </div>
