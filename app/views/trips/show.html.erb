@@ -10,37 +10,37 @@
 
     <div class="trip-show-card">
 
-   <div class="trip-detail-section">
-  <h2 class="trip-detail-section-title">ライブ情報</h2>
+      <div class="trip-detail-section">
+        <h2 class="trip-detail-section-title">ライブ情報</h2>
 
-  <dl class="trip-detail-grid">
-    <div class="trip-detail-item">
-      <dt>日付</dt>
-      <dd><%= @trip.event_date.strftime("%Y.%m.%d") %></dd>
-    </div>
+        <dl class="trip-detail-grid">
+          <div class="trip-detail-item">
+            <dt>日付</dt>
+            <dd><%= @trip.event_date.strftime("%Y.%m.%d") %></dd>
+          </div>
 
-    <div class="trip-detail-item">
-      <dt>会場</dt>
-      <dd><%= @trip.venue %></dd>
-    </div>
-  </dl>
-</div>
+          <div class="trip-detail-item">
+            <dt>会場</dt>
+            <dd><%= @trip.venue %></dd>
+          </div>
+        </dl>
+      </div>
 
-<div class="trip-detail-section">
-  <h2 class="trip-detail-section-title">遠征情報</h2>
+      <div class="trip-detail-section">
+        <h2 class="trip-detail-section-title">遠征情報</h2>
 
-  <dl class="trip-detail-grid">
-    <div class="trip-detail-item">
-      <dt>宿泊先</dt>
-      <dd><%= @trip.hotel.presence || "未登録" %></dd>
-    </div>
+        <dl class="trip-detail-grid">
+          <div class="trip-detail-item">
+            <dt>宿泊先</dt>
+            <dd><%= @trip.hotel.presence || "未登録" %></dd>
+          </div>
 
-    <div class="trip-detail-item">
-      <dt>交通手段</dt>
-      <dd><%= @trip.transportation.presence || "未登録" %></dd>
-    </div>
-  </dl>
-</div>
+          <div class="trip-detail-item">
+            <dt>交通手段</dt>
+            <dd><%= @trip.transportation.presence || "未登録" %></dd>
+          </div>
+        </dl>
+      </div>
 
       <div class="trip-detail-section">
         <h2 class="trip-detail-section-title">費用</h2>
@@ -86,6 +86,20 @@
         <div class="trip-detail-memo">
           <p><%= @trip.memo.presence || "未登録" %></p>
         </div>
+      </div>
+
+      <div class="trip-detail-section">
+        <h2 class="trip-detail-section-title">写真</h2>
+
+        <% if @trip.photos.any? %>
+          <div class="trip-photos">
+            <% @trip.photos.each do |photo| %>
+              <%= image_tag photo.image.url, alt: "遠征の写真", class: "trip-photo" %>
+            <% end %>
+          </div>
+        <% else %>
+          <p>写真はまだありません</p>
+        <% end %>
       </div>
 
       <div class="trip-show-actions">
