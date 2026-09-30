@@ -30,6 +30,45 @@ RSpec.describe "Trips", type: :system do
       expect(page).to have_content "遠征記録を作成しました"
     end
 
+    it "写真付きの遠征記録を作成できる" do
+      visit new_trip_path
+
+      fill_in "ライブ名", with: "写真付きLIVE"
+      fill_in "開催日", with: "2026-09-17"
+      fill_in "会場", with: "テスト会場"
+      attach_file "写真を選択", Rails.root.join("spec/fixtures/files/test_image.png")
+
+      expect do
+        click_button "遠征記録を登録する"
+      end.to change(Photo, :count).by(1)
+
+      trip = Trip.last
+
+      expect(trip.photos.count).to eq(1)
+      expect(trip.photos.first.image).to be_present
+    end
+
+    it "複数の写真付きの遠征記録を作成できる" do
+      visit new_trip_path
+
+      fill_in "ライブ名", with: "複数写真LIVE"
+      fill_in "開催日", with: "2026-09-17"
+      fill_in "会場", with: "テスト会場"
+
+      attach_file "写真を選択", [
+        Rails.root.join("spec/fixtures/files/test_image.png"),
+        Rails.root.join("spec/fixtures/files/test_image_2.png")
+      ]
+
+      expect do
+        click_button "遠征記録を登録する"
+      end.to change(Photo, :count).by(2)
+
+      trip = Trip.last
+
+      expect(trip.photos.count).to eq(2)
+    end
+
     it "自分の遠征記録が一覧に表示される" do
       trip
 
@@ -82,6 +121,23 @@ RSpec.describe "Trips", type: :system do
       expect(page).to have_content "食事代"
       expect(page).to have_content "30,000円"
       expect(page).to have_content "最高のライブだった"
+    end
+
+    it "投稿した写真が詳細画面に表示される" do
+      create(:photo, trip: trip)
+
+      visit trip_path(trip)
+
+     expect(page).to have_css("img.trip-photo", count: 1)
+    end
+
+    it "複数の写真が詳細画面に表示される" do
+      create(:photo, trip: trip)
+      create(:photo, trip: trip)
+
+      visit trip_path(trip)
+
+      expect(page).to have_css("img.trip-photo", count: 2)
     end
 
     it "他のユーザーの遠征記録は閲覧できない" do
