@@ -123,6 +123,23 @@ RSpec.describe "Trips", type: :system do
       expect(page).to have_content "最高のライブだった"
     end
 
+    it "投稿した写真が詳細画面に表示される" do
+      create(:photo, trip: trip)
+
+      visit trip_path(trip)
+
+     expect(page).to have_css("img.trip-photo", count: 1)
+    end
+
+    it "複数の写真が詳細画面に表示される" do
+      create(:photo, trip: trip)
+      create(:photo, trip: trip)
+
+      visit trip_path(trip)
+
+      expect(page).to have_css("img.trip-photo", count: 2)
+    end
+
     it "他のユーザーの遠征記録は閲覧できない" do
       other_user = create(:user)
       other_trip = create(:trip, user: other_user)
