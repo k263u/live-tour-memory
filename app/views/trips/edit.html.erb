@@ -7,7 +7,7 @@
     </p>
 
     <div class="trip-edit-layout">
-      <%= form_with model: @trip, class: "trip-form", data: { controller: "cost-calculator" } do |f| %>
+      <%= form_with model: @trip, id: "trip-edit-form", class: "trip-form", data: { controller: "cost-calculator image-preview" } do |f| %>
 
         <div class="trip-form-section">
           <h2 class="trip-form-section-title">ライブ情報</h2>
@@ -98,13 +98,48 @@
           </div>
         </div>
 
-        <div class="trip-update-actions">
-          <%= f.submit "変更を保存する", class: "trip-update-button" %>
+        <div class="trip-form-section">
+          <h2 class="trip-form-section-title">写真</h2>
+
+          <div class="form-group">
+            <%= f.label :images, "写真を追加" %>
+            <%= f.file_field :images, multiple: true, accept: "image/*", data: { image_preview_target: "input", action: "change->image-preview#preview" } %>
+          </div>
+
+          <div data-image-preview-target="label" hidden>
+            <p class="photo-section-label">追加する写真</p>
+          </div>
+
+          <div class="trip-photos" data-image-preview-target="preview"></div>
         </div>
       <% end %>
 
-      <div class="trip-delete-actions">
+      <div class="trip-saved-photos">
+        <p class="photo-section-label">登録済みの写真</p>
+
+        <% if @trip.photos.any? %>
+          <div class="trip-photos">
+            <% @trip.photos.each do |photo| %>
+              <div class="trip-photo-item">
+                <%= image_tag photo.image.url, alt: "遠征の写真", class: "trip-photo" %>
+
+                <div class="photo-delete-actions">
+                  <%= button_to "写真を削除", photo_path(photo), method: :delete, data: { turbo_confirm: "この写真を削除しますか？" }, class: "photo-delete-button" %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        <% else %>
+          <p>登録されている写真はありません。</p>
+        <% end %>
+      </div>
+
+      <div class="trip-edit-actions">
         <%= button_to "この記録を削除", trip_path(@trip), method: :delete, data: { turbo_confirm: "この遠征記録を削除しますか？" }, class: "trip-delete-button" %>
+
+        <button type="submit" form="trip-edit-form" class="trip-update-button">
+          変更を保存する
+        </button>
       </div>
     </div>
 
