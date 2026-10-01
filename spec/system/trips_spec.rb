@@ -185,6 +185,50 @@ RSpec.describe "Trips", type: :system do
       expect(page).to have_content "編集後のライブ"
     end
 
+    it "編集画面から写真を追加できる" do
+      visit edit_trip_path(trip)
+
+      attach_file "写真を追加", Rails.root.join("spec/fixtures/files/test_image.png")
+
+      expect do
+        click_button "変更を保存する"
+      end.to change(Photo, :count).by(1)
+
+      expect(trip.reload.photos.count).to eq(1)
+      expect(trip.photos.first.image).to be_present
+    end
+
+    it "編集画面から複数の写真を追加できる" do
+      visit edit_trip_path(trip)
+
+      attach_file "写真を追加", [
+        Rails.root.join("spec/fixtures/files/test_image.png"),
+        Rails.root.join("spec/fixtures/files/test_image_2.png")
+      ]
+
+      expect do
+        click_button "変更を保存する"
+      end.to change(Photo, :count).by(2)
+
+      expect(trip.reload.photos.count).to eq(2)
+    end
+
+    it "自分の写真を削除でき、編集画面から表示されなくなる" do
+      photo = create(:photo, trip: trip)
+
+      visit edit_trip_path(trip)
+
+      expect(page).to have_css("img.trip-photo", count: 1)
+
+      expect do
+        click_button "写真を削除"
+      end.to change(Photo, :count).by(-1)
+
+      expect(page).to have_current_path(edit_trip_path(trip))
+      expect(page).to have_content "写真を削除しました"
+      expect(page).not_to have_css("img.trip-photo")
+    end
+
     it "他のユーザーの遠征記録は編集できない" do
       other_user = create(:user)
       other_trip = create(:trip, user: other_user)
