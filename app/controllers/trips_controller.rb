@@ -39,14 +39,18 @@ class TripsController < ApplicationController
     @trip = current_user.trips.find_by(id: params[:id])
 
     unless @trip
-      redirect_to trips_path, alert: "遠征記録が見つかりません"
-      return
+     redirect_to trips_path, alert: "遠征記録が見つかりません"
+     return
     end
 
     if @trip.update(trip_params)
-      redirect_to trip_path(@trip), notice: "遠征記録を更新しました"
+      @trip.images&.reject(&:blank?)&.each do |image|
+       @trip.photos.create(image: image)
+    end
+
+    redirect_to trip_path(@trip), notice: "遠征記録を更新しました"
     else
-      render :edit, status: :unprocessable_content
+     render :edit, status: :unprocessable_content
     end
   end
 
