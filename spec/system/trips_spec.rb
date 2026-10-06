@@ -268,5 +268,17 @@ RSpec.describe "Trips", type: :system do
 
       expect(page).to have_current_path(new_user_session_path)
     end
+
+    it "遠征記録一覧にアクセスできない" do
+      visit trips_path
+
+      expect(page).to have_current_path(new_user_session_path)
+    end
+
+    it "遠征記録詳細にアクセスできない" do
+      visit trip_path(trip)
+
+      expect(page).to have_current_path(new_user_session_path)
+    end
   end
 end
