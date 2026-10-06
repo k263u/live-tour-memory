@@ -25,6 +25,12 @@ RSpec.describe Trip, type: :model do
 
       expect(trip).to be_invalid
     end
+
+    it "費用がマイナスの場合は無効である" do
+      trip = build(:trip, ticket_cost: -1)
+
+      expect(trip).to be_invalid
+    end
   end
 
   describe "関連付け" do

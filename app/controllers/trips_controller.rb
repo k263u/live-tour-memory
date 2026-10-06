@@ -13,7 +13,7 @@ class TripsController < ApplicationController
         @trip.photos.create(image: image)
       end
 
-      redirect_to root_path, notice: "遠征記録を作成しました"
+      redirect_to trips_path, notice: "遠征記録を作成しました"
     else
       render :new, status: :unprocessable_content
     end
