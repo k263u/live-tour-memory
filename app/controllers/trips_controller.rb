@@ -1,5 +1,6 @@
 class TripsController < ApplicationController
   before_action :require_login
+  before_action :set_trip, only: %i[show edit update destroy]
 
   def new
     @trip = Trip.new
@@ -9,9 +10,7 @@ class TripsController < ApplicationController
     @trip = current_user.trips.build(trip_params)
 
     if @trip.save
-      @trip.images&.reject(&:blank?)&.each do |image|
-        @trip.photos.create(image: image)
-      end
+      save_photos
 
       redirect_to trips_path, notice: "遠征記録を作成しました"
     else
@@ -24,65 +23,57 @@ class TripsController < ApplicationController
   end
 
   def show
-    @trip = current_user.trips.find_by(id: params[:id])
-
-    redirect_to trips_path, alert: "遠征記録が見つかりません" unless @trip
   end
 
   def edit
-    @trip = current_user.trips.find_by(id: params[:id])
-
-    redirect_to trips_path, alert: "遠征記録が見つかりません" unless @trip
   end
 
   def update
-    @trip = current_user.trips.find_by(id: params[:id])
-
-    unless @trip
-     redirect_to trips_path, alert: "遠征記録が見つかりません"
-     return
-    end
-
     if @trip.update(trip_params)
-      @trip.images&.reject(&:blank?)&.each do |image|
-       @trip.photos.create(image: image)
-    end
+      save_photos
 
-    redirect_to trip_path(@trip), notice: "遠征記録を更新しました"
+      redirect_to trip_path(@trip), notice: "遠征記録を更新しました"
     else
-     render :edit, status: :unprocessable_content
+      render :edit, status: :unprocessable_content
     end
   end
 
   def destroy
-    @trip = current_user.trips.find_by(id: params[:id])
-
-    unless @trip
-      redirect_to trips_path, alert: "遠征記録が見つかりません"
-      return
-    end
-
     @trip.destroy
     redirect_to trips_path, notice: "遠征記録を削除しました"
   end
 
   private
 
-  def trip_params
-    params.require(:trip).permit(
-      :live_name,
-      :artist_name,
-      :event_date,
-      :venue,
-      :hotel,
-      :transportation,
-      :ticket_cost,
-      :transportation_cost,
-      :accommodation_cost,
-      :other_cost,
-      :other_cost_memo,
-      :memo,
-      images: []
-    )
-  end
+    def trip_params
+      params.require(:trip).permit(
+        :live_name,
+        :artist_name,
+        :event_date,
+        :venue,
+        :hotel,
+        :transportation,
+        :ticket_cost,
+        :transportation_cost,
+        :accommodation_cost,
+        :other_cost,
+        :other_cost_memo,
+        :memo,
+        images: []
+      )
+    end
+
+      def set_trip
+       @trip = current_user.trips.find_by(id: params[:id])
+
+      return if @trip
+
+       redirect_to trips_path, alert: "遠征記録が見つかりません"
+      end
+
+      def save_photos
+          @trip.images&.reject(&:blank?)&.each do |image|
+          @trip.photos.create(image: image)
+       end
+    end
 end
