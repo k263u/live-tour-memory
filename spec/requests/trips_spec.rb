@@ -40,4 +40,63 @@ RSpec.describe "Trips", type: :request do
       end
     end
   end
+
+  describe "POST /trips" do
+    let(:user) { create(:user) }
+
+    before do
+      post user_session_path, params: {
+        email: user.email,
+        password: "password"
+      }
+    end
+
+    it "必須項目が未入力の場合、遠征記録を作成できない" do
+      expect do
+        post trips_path, params: {
+          trip: {
+          live_name: "",
+          event_date: "",
+          venue: ""
+          }
+        }
+      end.not_to change(Trip, :count)
+
+      expect(response).to have_http_status(:unprocessable_content)
+    end
+  end
+
+  describe "PATCH /trips/:id" do
+    let(:user) { create(:user) }
+    let(:other_user) { create(:user) }
+    let(:other_trip) { create(:trip, user: other_user) }
+
+    before do
+      post user_session_path, params: {
+        email: user.email,
+        password: "password"
+      }
+    end
+
+    it "他のユーザーの遠征記録を編集できない" do
+      original_name = other_trip.live_name
+
+      patch trip_path(other_trip), params: {
+        trip: { live_name: "変更後のライブ名" }
+      }
+
+      expect(other_trip.reload.live_name).to eq(original_name)
+      expect(response).to redirect_to(trips_path)
+      expect(flash[:alert]).to eq("遠征記録が見つかりません")
+    end
+
+    it "存在しない遠征記録を編集できない" do
+      patch trip_path(0), params: {
+      trip: { live_name: "変更後のライブ名" }
+      }
+
+      expect(response).to redirect_to(trips_path)
+      expect(flash[:alert]).to eq("遠征記録が見つかりません")
+    end
+  end
 end
