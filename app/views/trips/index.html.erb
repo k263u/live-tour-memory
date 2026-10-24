@@ -15,12 +15,12 @@
     <% if @trips.any? %>
       <div class="trip-list">
         <% @trips.each do |trip| %>
-          <div class="trip-list-card">
+          <%= link_to trip_path(trip), class: "trip-list-card" do %>
             <p class="trip-date">
               <%= trip.event_date.strftime("%Y.%m.%d") %>
             </p>
 
-            <h2><%= link_to trip.live_name, trip_path(trip), class: "trip-title-link" %></h2>
+            <h2 class="trip-title-link"><%= trip.live_name %></h2>
 
             <% if trip.artist_name.present? %>
               <p class="trip-artist"><%= trip.artist_name %></p>
@@ -29,7 +29,7 @@
             <p class="trip-venue">
               📍 <%= trip.venue %>
             </p>
-          </div>
+          <% end %>
         <% end %>
       </div>
     <% else %>
