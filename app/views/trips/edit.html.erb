@@ -121,7 +121,7 @@
           <div class="trip-photos">
             <% @trip.photos.each do |photo| %>
               <div class="trip-photo-item">
-                <%= image_tag photo.image.url, alt: "遠征の写真", class: "trip-photo" %>
+                <%= image_tag photo_path(photo), alt: "遠征の写真", class: "trip-photo" %>
 
                 <div class="photo-delete-actions">
                   <%= button_to "写真を削除", photo_path(photo), method: :delete, data: { turbo_confirm: "この写真を削除しますか？" }, class: "photo-delete-button" %>
