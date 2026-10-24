@@ -94,7 +94,7 @@
         <% if @trip.photos.any? %>
           <div class="trip-photos">
             <% @trip.photos.each do |photo| %>
-              <%= image_tag photo.image.url, alt: "遠征の写真", class: "trip-photo" %>
+              <%= image_tag photo_path(photo), alt: "遠征の写真", class: "trip-photo" %>
             <% end %>
           </div>
         <% else %>
