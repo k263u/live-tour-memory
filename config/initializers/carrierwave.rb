@@ -1,5 +1,5 @@
 CarrierWave.configure do |config|
-  unless Rails.env.test?
+  unless Rails.env.test? || ENV["SECRET_KEY_BASE_DUMMY"] == "1"
     config.fog_credentials = {
       provider: "AWS",
       aws_access_key_id: ENV.fetch("R2_ACCESS_KEY_ID"),
