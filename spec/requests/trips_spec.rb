@@ -55,14 +55,36 @@ RSpec.describe "Trips", type: :request do
       expect do
         post trips_path, params: {
           trip: {
-          live_name: "",
-          event_date: "",
-          venue: ""
+            live_name: "",
+            event_date: "",
+            venue: ""
           }
         }
       end.not_to change(Trip, :count)
 
       expect(response).to have_http_status(:unprocessable_content)
+    end
+
+    it "写真の保存に失敗した場合、遠征記録を作成せず日本語のエラーを表示する" do
+      allow_any_instance_of(Photo).to receive(:save!).and_raise(
+        ActiveRecord::RecordInvalid.new(Photo.new)
+      )
+
+      expect do
+        post trips_path, params: {
+          trip: {
+            live_name: "TEST LIVE",
+            event_date: "2026-10-25",
+            venue: "東京ドーム",
+            images: [
+              fixture_file_upload("test_image.png", "image/png")
+            ]
+          }
+        }
+      end.not_to change(Trip, :count)
+
+      expect(response).to have_http_status(:unprocessable_content)
+      expect(response.body).to include("写真をアップロードできませんでした")
     end
   end
 
@@ -92,7 +114,7 @@ RSpec.describe "Trips", type: :request do
 
     it "存在しない遠征記録を編集できない" do
       patch trip_path(0), params: {
-      trip: { live_name: "変更後のライブ名" }
+        trip: { live_name: "変更後のライブ名" }
       }
 
       expect(response).to redirect_to(trips_path)
