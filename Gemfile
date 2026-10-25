@@ -22,7 +22,7 @@ gem "carrierwave"
 gem "ruby-vips", "~> 2.0"
 gem "simplecov", require: false
 gem "fog-aws"
-gem "aws-sdk-s3", "~> 1.0"
+gem "aws-sdk-s3", "~> 1.235"
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
 
