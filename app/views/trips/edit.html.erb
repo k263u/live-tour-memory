@@ -1,3 +1,4 @@
+
 <div class="trip-page">
   <div class="trip-card">
     <p class="section-label">EDIT TRIP</p>
@@ -8,6 +9,17 @@
 
     <div class="trip-edit-layout">
       <%= form_with model: @trip, id: "trip-edit-form", class: "trip-form", data: { controller: "cost-calculator image-preview" } do |f| %>
+
+        <% if @trip.errors.any? %>
+          <div class="error-messages" role="alert">
+            <p>入力内容を確認してください</p>
+            <ul>
+              <% @trip.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
 
         <div class="trip-form-section">
           <h2 class="trip-form-section-title">ライブ情報</h2>

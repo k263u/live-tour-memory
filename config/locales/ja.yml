@@ -1,13 +1,64 @@
 ja:
-  errors:
-    messages:
-      blank: "を入力してください"
-      too_short: "は%{count}文字以上で入力してください"
-
   activerecord:
+    models:
+      user: "ユーザー"
+      trip: "遠征記録"
+      photo: "写真"
+
     attributes:
       user:
-        name: 名前
-        email: メールアドレス
-        password: パスワード
-        password_confirmation: パスワード確認
+        name: "名前"
+        email: "メールアドレス"
+        password: "パスワード"
+        password_confirmation: "パスワード確認"
+
+      trip:
+        live_name: "ライブ名"
+        artist_name: "アーティスト名"
+        event_date: "開催日"
+        venue: "会場"
+        hotel: "宿泊先"
+        transportation: "交通手段"
+        ticket_cost: "チケット代"
+        transportation_cost: "交通費"
+        accommodation_cost: "宿泊費"
+        other_cost: "その他の費用"
+        memo: "メモ"
+
+      photo:
+        image: "写真"
+        trip: "遠征記録"
+
+    errors:
+      messages:
+        record_invalid: "バリデーションに失敗しました: %{errors}"
+        restrict_dependent_destroy:
+          has_one: "%{record}が存在しているため削除できません"
+          has_many: "%{record}が存在しているため削除できません"
+
+  errors:
+    format: "%{attribute}%{message}"
+
+    messages:
+      blank: "を入力してください"
+      required: "を入力してください"
+      taken: "はすでに使用されています"
+      too_short: "は%{count}文字以上で入力してください"
+      too_long: "は%{count}文字以内で入力してください"
+      wrong_length: "は%{count}文字で入力してください"
+      confirmation: "と確認用の入力が一致しません"
+      invalid: "は不正な値です"
+      inclusion: "は一覧にありません"
+      exclusion: "は予約されています"
+      not_a_number: "は数値で入力してください"
+      not_an_integer: "は整数で入力してください"
+      greater_than: "は%{count}より大きい値にしてください"
+      greater_than_or_equal_to: "は%{count}以上の値にしてください"
+      less_than: "は%{count}より小さい値にしてください"
+      less_than_or_equal_to: "は%{count}以下の値にしてください"
+      equal_to: "は%{count}にしてください"
+      other_than: "は%{count}以外の値にしてください"
+      empty: "を入力してください"
+      present: "は入力しないでください"
+      accepted: "を受諾してください"
+      not_saved: "保存できませんでした"
