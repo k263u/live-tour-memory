@@ -14,7 +14,9 @@ RSpec.describe "Users", type: :request do
         }
       end.to change(User, :count).by(1)
 
-      expect(response).to redirect_to(root_path)
+      expect(response).to redirect_to(trips_path)
+      get trips_path
+      expect(response).to have_http_status(:ok)
     end
 
     it "不正な情報ではユーザー登録できないこと" do

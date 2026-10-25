@@ -15,16 +15,8 @@ RSpec.describe "主要機能のユーザーフロー", type: :system do
 
     click_button "登録"
 
-    expect(page).to have_current_path(root_path)
-    expect(page).to have_content "ユーザー登録が完了しました"
-
-    visit new_user_session_path
-
-    fill_in "メールアドレス", with: "flow@example.com"
-    fill_in "パスワード", with: "password"
-    click_button "ログイン"
-
     expect(page).to have_current_path(trips_path)
+    expect(page).to have_content "ユーザー登録が完了しました"
 
     visit new_trip_path
 
