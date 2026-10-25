@@ -975,3 +975,17 @@ footer {
     height: 220px;
   }
 }
+
+/* 保存前の写真プレビュー削除ボタン */
+.trip-photos .trip-photo-item {
+  position: relative;
+}
+
+.trip-photos .photo-delete-button {
+  width: auto;
+  min-width: 0;
+  padding: 4px 10px;
+  font-size: 12px;
+  display: inline-block;
+  align-self: flex-start;
+}

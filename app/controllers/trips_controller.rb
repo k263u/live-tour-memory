@@ -9,13 +9,15 @@ class TripsController < ApplicationController
   def create
     @trip = current_user.trips.build(trip_params)
 
-    if @trip.save
-      save_photos
-
-      redirect_to trips_path, notice: "遠征記録を作成しました"
-    else
-      render :new, status: :unprocessable_content
+    ActiveRecord::Base.transaction do
+      @trip.save!
+      save_photos!
     end
+
+    redirect_to trips_path, notice: "遠征記録を作成しました"
+  rescue ActiveRecord::RecordInvalid, CarrierWave::IntegrityError, CarrierWave::ProcessingError
+    @trip.errors.add(:base, "写真をアップロードできませんでした") if @trip.errors.empty?
+    render :new, status: :unprocessable_content
   end
 
   def index
@@ -29,13 +31,15 @@ class TripsController < ApplicationController
   end
 
   def update
-    if @trip.update(trip_params)
-      save_photos
-
-      redirect_to trip_path(@trip), notice: "遠征記録を更新しました"
-    else
-      render :edit, status: :unprocessable_content
+    ActiveRecord::Base.transaction do
+      @trip.update!(trip_params)
+      save_photos!
     end
+
+    redirect_to trip_path(@trip), notice: "遠征記録を更新しました"
+  rescue ActiveRecord::RecordInvalid, CarrierWave::IntegrityError, CarrierWave::ProcessingError
+    @trip.errors.add(:base, "写真をアップロードできませんでした") if @trip.errors.empty?
+    render :edit, status: :unprocessable_content
   end
 
   def destroy
@@ -63,17 +67,16 @@ class TripsController < ApplicationController
       )
     end
 
-      def set_trip
-       @trip = current_user.trips.find_by(id: params[:id])
-
+    def set_trip
+      @trip = current_user.trips.find_by(id: params[:id])
       return if @trip
 
-       redirect_to trips_path, alert: "遠征記録が見つかりません"
-      end
+      redirect_to trips_path, alert: "遠征記録が見つかりません"
+    end
 
-      def save_photos
-          @trip.images&.reject(&:blank?)&.each do |image|
-          @trip.photos.create(image: image)
-       end
+    def save_photos!
+      @trip.images&.reject(&:blank?)&.each do |image|
+        @trip.photos.create!(image: image)
+      end
     end
 end
